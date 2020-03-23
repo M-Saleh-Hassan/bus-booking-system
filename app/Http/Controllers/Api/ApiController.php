@@ -34,4 +34,11 @@ class ApiController extends Controller
         }
         return true;
     }
+
+    public function throwCustomError($errorsArray)
+    {
+        $data['status']=0;
+        $data['errors']=$errorsArray;
+        throw new HttpResponseException(response()->json($data, 422));
+    }
 }

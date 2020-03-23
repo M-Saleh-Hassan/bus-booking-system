@@ -15,4 +15,9 @@ class Trip extends Model
     {
         return $this->hasOne(Bus::class, 'trip_id');
     }
+
+    public function seats()
+    {
+        return $this->hasManyThrough(BusSeat::class, Bus::class);
+    }
 }

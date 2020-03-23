@@ -2,6 +2,7 @@
 
 namespace App\Repositories;
 
+use App\Models\Reservation;
 use App\Models\Station;
 use App\Models\Trip;
 use App\Models\TripStop;
@@ -30,6 +31,26 @@ class TripRepository
             }
         }
         return $availableTrips;
+    }
+
+    public function bookSeat($trip, $seat, $startStation, $endStation, $user)
+    {
+        if(!$this->tripHasEndStation($trip, $startStation, $endStation))
+            return [];
+
+        $reservedSeatsIds = $this->tripBusHasAvaliablePlace($trip, $startStation, $endStation);
+        if(empty($reservedSeatsIds) || in_array($seat->id, $reservedSeatsIds->toArray()))
+            return [];
+
+        $reservation = Reservation::Create([
+            'user_id'         => $user->id,
+            'bus_seat_id'     => $seat->id,
+            'from_station_id' => $startStation->id,
+            'to_station_id'   => $endStation->id
+        ]);
+
+        return $reservation;
+
     }
 
     private function tripHasEndStation($trip, $startStation, $endStation)
