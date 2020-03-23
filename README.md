@@ -23,7 +23,9 @@ will create all stations and dummy users till now.
 ![Schema](link-to-image)
 
 ## Postman Collection
-
+- Collection: [PostMan Collection](https://www.getpostman.com/collections/e74cff66a8214fd7df18)
+- Documentation: [V.1](https://documenter.getpostman.com/view/5467107/SzS8tQn4
+)
 ## Admin Area
 - still working on
 
@@ -39,5 +41,4 @@ will create all stations and dummy users till now.
 
 - Pagination
 - Comments
-- Dummy Data
 
