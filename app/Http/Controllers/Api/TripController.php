@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Resources\TripCollection;
 use App\Models\BusSeat;
 use App\Models\Trip;
-use App\User;
 use Illuminate\Http\Request;
 
 class TripController extends ApiController
@@ -29,7 +28,6 @@ class TripController extends ApiController
 
     public function bookSeat(Trip $trip, BusSeat $seat, Request $request)
     {
-        $user = User::find(5);
         $rules = [
             'start_station_id' => 'required|numeric|min:1|exists:stations,id',
             'end_station_id'   => 'required|numeric|min:1|exists:stations,id',
@@ -39,6 +37,7 @@ class TripController extends ApiController
 
         $startStation = $this->stationRepo->getStationById($request->start_station_id);
         $endStation   = $this->stationRepo->getStationById($request->end_station_id);
+        $user = auth()->user();
 
         $reservation = $this->tripRepo->bookSeat($trip, $seat, $startStation, $endStation, $user);
 
