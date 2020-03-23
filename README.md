@@ -20,7 +20,7 @@ will create all stations and dummy users till now.
 - **php artisan jwt:secret**
 
 ## Database Schema
-![Schema](link-to-image)
+![Schema](https://i.ibb.co/fnq929G/Bus-Vooking-System.png)
 
 ## Postman Collection
 - Collection: [PostMan Collection](https://www.getpostman.com/collections/e74cff66a8214fd7df18)
