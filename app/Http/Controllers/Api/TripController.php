@@ -6,6 +6,7 @@ use App\Http\Resources\TripCollection;
 use App\Models\BusSeat;
 use App\Models\Trip;
 use Illuminate\Http\Request;
+use JWTAuth;
 
 class TripController extends ApiController
 {
@@ -37,7 +38,7 @@ class TripController extends ApiController
 
         $startStation = $this->stationRepo->getStationById($request->start_station_id);
         $endStation   = $this->stationRepo->getStationById($request->end_station_id);
-        $user = auth()->user();
+        $user = JWTAuth::parseToken()->toUser();
 
         $reservation = $this->tripRepo->bookSeat($trip, $seat, $startStation, $endStation, $user);
 
